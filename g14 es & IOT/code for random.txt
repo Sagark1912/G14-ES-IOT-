@@ -1,0 +1,13 @@
+#define LED1 12  
+#define LED2 10  
+
+void setup() {
+    pinMode(LED1, OUTPUT);
+    pinMode(LED2, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(LED1, random(2));  // Random ON/OFF
+    digitalWrite(LED2, random(2));  // Random ON/OFF
+    delay(random(100, 1000));  // Random delay between 100ms to 1000ms
+}

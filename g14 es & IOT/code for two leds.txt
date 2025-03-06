@@ -1,0 +1,38 @@
+//task-1 blink two leds alternatively 
+//simultaneously
+//2 leds blink sequentially
+
+//randomly, snake pattern with 5-6 leds
+void setup()
+{
+  
+  pinMode(12,OUTPUT);
+  pinMode(10,OUTPUT);
+  
+}
+
+void loop()
+{
+ /* digitalWrite(12,HIGH);
+  digitalWrite(10,LOW);
+  delay(1000);
+  digitalWrite(12,LOW);
+  digitalWrite(10,HIGH);
+  delay(1000);*/
+  
+  /*digitalWrite(12,LOW);
+  digitalWrite(10,LOW);
+  delay(1000);
+  digitalWrite(10,HIGH);
+  digitalWrite(12,HIGH);
+  delay(1000);*/
+  
+  digitalWrite(10,HIGH );
+   delay(500);
+  digitalWrite(10,LOW);
+  delay(500);
+  digitalWrite(12,LOW );
+    delay(500);
+  digitalWrite(12,HIGH);
+   delay(500);
+}
