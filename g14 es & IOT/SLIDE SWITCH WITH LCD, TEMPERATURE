@@ -1,0 +1,57 @@
+#include <LiquidCrystal.h>
+int data =A0;
+//LiquidCrystal LCD(RS,E,D4,D5,D6,D7);
+LiquidCrystal LCD(12,11,7,6,3,2);
+ int s_l=8;
+int s_r=9;
+void setup()
+{
+  Serial.begin(9600);
+  LCD.begin(16,2);
+}
+
+void loop()
+{
+  
+  int slidel = digitalRead(s_l);
+  int slider = digitalRead(s_r);
+  float temperature =analogRead(data)*0.0048875855;
+  //75 -?=25%
+  float temperature1=(temperature-0.5)*100;
+  if(slidel==1)
+  {
+
+Serial.println(temperature1);
+ // scaling factor =maximum voltage/adc range =0.004887585532746823069403714565
+  LCD.setCursor(0,0);
+  LCD.print("Temp =");
+ LCD.print(temperature1);
+  LCD.print(" C");
+  delay(100);
+  }
+  
+  else if (slider==0)
+  { 
+  float fran =(temperature1*9/5)+32;
+  LCD.setCursor(0,1);
+  LCD.print("Temp =");
+  LCD.print(fran);
+  LCD.print(" F");
+  delay(100);
+  LCD.clear();
+  }
+  
+  //logic of map
+ // int temperature =analogRead(data);
+ // Serial.println(temperature);
+ //int output = map(temperature,20,358,-40,125);
+ // LCD.setCursor(0,0);
+ // LCD.print("Temp =");
+ // LCD.print(output);
+  
+ // LCD.print(" C");
+//  delay(100);
+ // LCD.clear();
+}
+
+  
