@@ -1,0 +1,30 @@
+#define LED_PIN 9  // LED connected to pin 9
+
+void setup() {
+    pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+    // Fade IN
+    for (int brightness = 0; brightness <= 255; brightness++) {
+        setBrightness(LED_PIN, brightness);
+        delay(5);  // Adjust speed of fading
+    }
+
+    // Fade OUT
+    for (int brightness = 255; brightness >= 0; brightness--) {
+        setBrightness(LED_PIN, brightness);
+        delay(5);
+    }
+}
+
+// Function to simulate analogWrite using digitalWrite
+void setBrightness(int pin, int brightness) {
+    int onTime = brightness * 4;         // Scale to 1020us max
+    int offTime = 1020 - onTime;          // Total period remains constant
+
+    digitalWrite(pin, HIGH);
+    delayMicroseconds(onTime);
+    digitalWrite(pin, LOW);
+    delayMicroseconds(offTime);
+}
