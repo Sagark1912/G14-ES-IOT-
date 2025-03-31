@@ -1,0 +1,42 @@
+int led = 2;         
+int buttonpin = 3;   
+
+int press = 0;
+int ledstate = LOW;
+int lastbuttonstate = LOW;
+int buttonstate = LOW;
+unsigned long debouncetime = 0;
+unsigned long debouncedelay = 50;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(buttonpin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int state = digitalRead(buttonpin);
+
+  if (state != lastbuttonstate) {
+    debouncetime = millis(); 
+  }
+
+  if ((millis() - debouncetime) > debouncedelay) {
+    if (state != buttonstate) {
+      buttonstate = state;
+
+      if (buttonstate == HIGH) {
+        press = press + 1;
+        if (press == 6) {
+          ledstate = HIGH;
+        } else {
+          ledstate = LOW;
+        }
+      }
+    }
+  }
+if(ledstate==HIGH && milli()-
+{
+  digitalWrite(led, ledstate);
+  lastbuttonstate = state;
+}
