@@ -1,0 +1,60 @@
+int red = 4;
+int green = 2;
+int blue = 3;
+int push = 5;
+int p = 0;
+int k = 0;
+
+void setup() {
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+  pinMode(push, INPUT);
+  
+  Serial.begin(9600);
+}
+
+void loop() {
+  int out = digitalRead(push);
+
+  // Debounce logic
+  if (out != k) {
+    delay(10);  // Debounce delay
+    out = digitalRead(push);
+  }
+
+  if (out == 1 && k == 0) {
+    k = 1;
+    p++;
+  }
+  if (out == 0 && k == 1) {
+    k = 0;
+  }
+
+  Serial.println(p);
+
+  // Switch-Case for LED Control
+  switch (p) {
+    case 1:
+      digitalWrite(red, HIGH);
+      delay(100);
+      digitalWrite(red, LOW);
+      break;
+
+    case 2:
+      digitalWrite(green, HIGH);
+      delay(100);
+      digitalWrite(green, LOW);
+      break;
+
+    case 3:
+      digitalWrite(blue, HIGH);
+      delay(100);
+      digitalWrite(blue, LOW);
+      break;
+
+    default:
+      p = 0;  // Reset after third press
+      break;
+  }
+}
